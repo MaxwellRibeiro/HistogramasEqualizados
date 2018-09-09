@@ -1,12 +1,11 @@
-C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\HistogramasEqualizados.exe.config
-C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\HistogramasEqualizados.exe
-C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\HistogramasEqualizados.pdb
-C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\MaterialSkin.dll
-C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.csprojAssemblyReference.cache
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.Form1.resources
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.Properties.Resources.resources
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.csproj.GenerateResource.cache
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.csproj.CoreCompileInputs.cache
+C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\HistogramasEqualizados.exe.config
+C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\HistogramasEqualizados.exe
+C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\HistogramasEqualizados.pdb
+C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\bin\Debug\MaterialSkin.dll
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.csproj.CopyComplete
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.exe
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.pdb
