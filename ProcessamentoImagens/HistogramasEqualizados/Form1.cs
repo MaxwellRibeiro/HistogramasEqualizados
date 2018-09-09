@@ -1,7 +1,10 @@
 ﻿using MaterialSkin.Controls;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace HistogramasEqualizados
 {
@@ -12,6 +15,7 @@ namespace HistogramasEqualizados
         public Form1()
         {
             InitializeComponent();
+            bdGraficoHistogramaRed.DataSource = new List<HistogramaDto>();
         }
 
         private void btCarregarImagem_Click(object sender, System.EventArgs e)
@@ -27,6 +31,7 @@ namespace HistogramasEqualizados
                 _imagem = new Bitmap(File1.FileName);
                 pbImagemOriginal.Image = _imagem;
             }
+           
         }
 
         private void EqualizarImagem(System.ComponentModel.DoWorkEventArgs e)
@@ -110,6 +115,20 @@ namespace HistogramasEqualizados
                 // Cancela a tarefa DoWork 
                 backgroundWorker1.CancelAsync();
             }
+
+           
+        }
+
+        private void GraficoHistograma()
+        {
+            var Sr = new Series();
+            Sr.Color = Color.Red;
+            Sr.XValueMember = "K";
+            Sr.YValueMembers = "NK";
+            ctHistogramaR.Series.Add(Sr);
+
+            ctHistogramaR.DataSource = ((List<HistogramaDto>)bdGraficoHistogramaRed.List).ToList();
         }
     }
+    
 }
