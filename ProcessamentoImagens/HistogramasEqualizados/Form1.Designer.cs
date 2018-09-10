@@ -53,17 +53,17 @@
             this.graficoHistogramaB = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btGraficoHistograma = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btGraficoEqualizado = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.graficoEqualizadoR = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.graficoEqualizadoG = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.graficoEqualizadoB = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagemOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagemEqualizada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoEqualizadoR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoEqualizadoG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoEqualizadoB)).BeginInit();
             this.SuspendLayout();
             // 
             // AbrirImagem
@@ -206,53 +206,53 @@
             this.btGraficoEqualizado.Text = "Gráfico Equalizado";
             this.btGraficoEqualizado.UseVisualStyleBackColor = true;
             // 
-            // chart1
+            // graficoEqualizadoR
             // 
             chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            this.chart1.Location = new System.Drawing.Point(719, 149);
-            this.chart1.Name = "chart1";
+            this.graficoEqualizadoR.ChartAreas.Add(chartArea4);
+            this.graficoEqualizadoR.Location = new System.Drawing.Point(719, 149);
+            this.graficoEqualizadoR.Name = "graficoEqualizadoR";
             series4.ChartArea = "ChartArea1";
             series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(440, 180);
-            this.chart1.TabIndex = 20;
-            this.chart1.Text = "chart1";
+            this.graficoEqualizadoR.Series.Add(series4);
+            this.graficoEqualizadoR.Size = new System.Drawing.Size(440, 180);
+            this.graficoEqualizadoR.TabIndex = 20;
+            this.graficoEqualizadoR.Text = "chart1";
             // 
-            // chart2
+            // graficoEqualizadoG
             // 
             chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
-            this.chart2.Location = new System.Drawing.Point(719, 335);
-            this.chart2.Name = "chart2";
+            this.graficoEqualizadoG.ChartAreas.Add(chartArea5);
+            this.graficoEqualizadoG.Location = new System.Drawing.Point(719, 335);
+            this.graficoEqualizadoG.Name = "graficoEqualizadoG";
             series5.ChartArea = "ChartArea1";
             series5.Name = "Series1";
-            this.chart2.Series.Add(series5);
-            this.chart2.Size = new System.Drawing.Size(440, 180);
-            this.chart2.TabIndex = 21;
-            this.chart2.Text = "chart1";
+            this.graficoEqualizadoG.Series.Add(series5);
+            this.graficoEqualizadoG.Size = new System.Drawing.Size(440, 180);
+            this.graficoEqualizadoG.TabIndex = 21;
+            this.graficoEqualizadoG.Text = "chart1";
             // 
-            // chart3
+            // graficoEqualizadoB
             // 
             chartArea6.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea6);
-            this.chart3.Location = new System.Drawing.Point(719, 521);
-            this.chart3.Name = "chart3";
+            this.graficoEqualizadoB.ChartAreas.Add(chartArea6);
+            this.graficoEqualizadoB.Location = new System.Drawing.Point(719, 521);
+            this.graficoEqualizadoB.Name = "graficoEqualizadoB";
             series6.ChartArea = "ChartArea1";
             series6.Name = "Series1";
-            this.chart3.Series.Add(series6);
-            this.chart3.Size = new System.Drawing.Size(440, 180);
-            this.chart3.TabIndex = 22;
-            this.chart3.Text = "chart2";
+            this.graficoEqualizadoB.Series.Add(series6);
+            this.graficoEqualizadoB.Size = new System.Drawing.Size(440, 180);
+            this.graficoEqualizadoB.TabIndex = 22;
+            this.graficoEqualizadoB.Text = "chart2";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 708);
-            this.Controls.Add(this.chart3);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.graficoEqualizadoB);
+            this.Controls.Add(this.graficoEqualizadoG);
+            this.Controls.Add(this.graficoEqualizadoR);
             this.Controls.Add(this.btGraficoEqualizado);
             this.Controls.Add(this.btGraficoHistograma);
             this.Controls.Add(this.graficoHistogramaB);
@@ -272,9 +272,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoEqualizadoR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoEqualizadoG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoEqualizadoB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -294,9 +294,9 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoHistogramaB;
         private MaterialSkin.Controls.MaterialRaisedButton btGraficoHistograma;
         private MaterialSkin.Controls.MaterialRaisedButton btGraficoEqualizado;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoEqualizadoR;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoEqualizadoG;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoEqualizadoB;
     }
 }
 

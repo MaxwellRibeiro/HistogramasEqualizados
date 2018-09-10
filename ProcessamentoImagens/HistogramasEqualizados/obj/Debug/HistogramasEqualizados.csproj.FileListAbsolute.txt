@@ -9,3 +9,4 @@ C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\Hi
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.csproj.CopyComplete
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.exe
 C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.pdb
+C:\Users\Maxwell\Documents\GitHub\HistogramasEqualizados\ProcessamentoImagens\HistogramasEqualizados\obj\Debug\HistogramasEqualizados.csprojAssemblyReference.cache
