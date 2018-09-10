@@ -20,6 +20,10 @@ namespace HistogramasEqualizados
         private List<HistogramaDto> _bdGraficoHistogramaGreen;
         private List<HistogramaDto> _bdGraficoHistogramaBlue;
 
+        private List<EqualizacaoDto> _bdGraficoEqualizacaoRed;
+        private List<EqualizacaoDto> _bdGraficoEqualizacaoGreen;
+        private List<EqualizacaoDto> _bdGraficoEqualizacaoBlue;
+
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +35,11 @@ namespace HistogramasEqualizados
             _bdGraficoHistogramaRed = new List<HistogramaDto>();
              _bdGraficoHistogramaGreen = new List<HistogramaDto>();
              _bdGraficoHistogramaBlue = new List<HistogramaDto>();
-        }
+
+             _bdGraficoEqualizacaoRed = new List<EqualizacaoDto>();
+             _bdGraficoEqualizacaoGreen = new List<EqualizacaoDto>();
+            _bdGraficoEqualizacaoBlue = new List<EqualizacaoDto>();
+    }
 
         private void btCarregarImagem_Click(object sender, EventArgs e)
         {
@@ -74,11 +82,11 @@ namespace HistogramasEqualizados
         {
             if(_imagemEqualizada || _graficoHistograma || _graficoEqualizado)
             {
-                if (!CarregarGrificoHistograma(e)) return;
+                if (!CarregarGraficoHistograma(e)) return;
             }
         }
 
-        private bool CarregarGrificoHistograma(System.ComponentModel.DoWorkEventArgs e)
+        private bool CarregarGraficoHistograma(System.ComponentModel.DoWorkEventArgs e)
         {
             if (_imagem == null) return false;
 
@@ -187,22 +195,75 @@ namespace HistogramasEqualizados
             return true;
         }
 
-        private void btGraficoHistograma_Click(object sender, EventArgs e)
+        private void CarregarGraficoEqualizacao(System.ComponentModel.DoWorkEventArgs e)
         {
-            backgroundWorker.RunWorkerAsync();
+            if (!Equalizar(e)) return;
 
-            ProgressBar.Style = ProgressBarStyle.Marquee;
-            ProgressBar.MarqueeAnimationSpeed = 5;
+            //Continue
         }
 
-        private void Equalizar(System.ComponentModel.DoWorkEventArgs e)
+        private bool Equalizar(System.ComponentModel.DoWorkEventArgs e)
+        {
+            _bdGraficoEqualizacaoRed.Clear();
+            _bdGraficoEqualizacaoGreen.Clear();
+            _bdGraficoEqualizacaoBlue.Clear();
+            
+            decimal soma = 0;
+            foreach (var histoRed in _bdGraficoHistogramaRed)
+            {
+                if (VerificarIsCancelamento(e)) return false;
+
+                soma += histoRed.PR;
+
+                _bdGraficoEqualizacaoRed.Add(new EqualizacaoDto
+                {
+                    K = histoRed.K,
+                    S = soma,
+                    NEWK = (int)Math.Round(soma * 255, 0)
+                });
+            }
+
+            soma = 0;
+            foreach (var histoGreen in _bdGraficoHistogramaGreen)
+            {
+                if (VerificarIsCancelamento(e)) return false;
+
+                soma += histoGreen.PR;
+
+                _bdGraficoEqualizacaoGreen.Add(new EqualizacaoDto
+                {
+                    K = histoGreen.K,
+                    S = soma,
+                    NEWK = (int)Math.Round(soma * 255, 0)
+                });
+            }
+
+            soma = 0;
+            foreach (var histoBlue in _bdGraficoHistogramaBlue)
+            {
+                if (VerificarIsCancelamento(e)) return false;
+
+                soma += histoBlue.PR;
+
+                _bdGraficoEqualizacaoBlue.Add(new EqualizacaoDto
+                {
+                    K = histoBlue.K,
+                    S = soma,
+                    NEWK = (int)Math.Round(soma * 255, 0)
+                });
+            }
+
+            return true;
+        }
+
+        private void CarregarNovaImagem()
         {
             Color pixel1;
             int r, g, b;
             for (int x = 0; x < _imagem.Width; x++)
                 for (int y = 0; y < _imagem.Height; y++)
                 {
-                    if (VerificarIsCancelamento(e)) return;
+
 
                     pixel1 = _imagem.GetPixel(x, y);
                     r = pixel1.R + 100;
@@ -226,6 +287,14 @@ namespace HistogramasEqualizados
             return false;
         }
 
+        private void btGraficoHistograma_Click(object sender, EventArgs e)
+        {
+            backgroundWorker.RunWorkerAsync();
+
+            ProgressBar.Style = ProgressBarStyle.Marquee;
+            ProgressBar.MarqueeAnimationSpeed = 5;
+        }
+
         private void btEqualizarImagem_Click(object sender, EventArgs e)
         {
             //desabilita os botões enquanto a tarefa é executada.
@@ -235,8 +304,6 @@ namespace HistogramasEqualizados
             ProgressBar.Style = ProgressBarStyle.Marquee;
             ProgressBar.MarqueeAnimationSpeed = 5;
         }
-
-        
 
         private void btCancelar_Click(object sender, EventArgs e)
         {
