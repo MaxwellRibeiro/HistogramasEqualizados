@@ -44,6 +44,16 @@ namespace HistogramasEqualizados
                 pbImagemOriginal.Image = _imagem;
             }
 
+            graficoHistogramaR.Series.Clear();
+            graficoHistogramaG.Series.Clear();
+            graficoHistogramaB.Series.Clear();
+
+            graficoEqualizadoR.Series.Clear();
+            graficoEqualizadoG.Series.Clear();
+            graficoEqualizadoB.Series.Clear();
+
+            pbImagemEqualizada.Image = null;
+
             _bdGraficoHistogramaRed = new List<HistogramaDto>();
             _bdGraficoHistogramaGreen = new List<HistogramaDto>();
             _bdGraficoHistogramaBlue = new List<HistogramaDto>();
