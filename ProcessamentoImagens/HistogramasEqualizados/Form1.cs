@@ -13,13 +13,13 @@ namespace HistogramasEqualizados
         private Bitmap _imagem;
         private Bitmap _imagemNova;
 
-        private bool _imagemEqualizada;
-        private bool _graficoHistograma;
-        private bool _graficoEqualizado;
-
         private List<HistogramaDto> _bdGraficoHistogramaRed;
         private List<HistogramaDto> _bdGraficoHistogramaGreen;
         private List<HistogramaDto> _bdGraficoHistogramaBlue;
+
+        private List<HistogramaDto> _bdGraficoHistogramaRedNovo;
+        private List<HistogramaDto> _bdGraficoHistogramaGreenNovo;
+        private List<HistogramaDto> _bdGraficoHistogramaBlueNovo;
 
         private List<EqualizacaoDto> _bdGraficoEqualizacaoRed;
         private List<EqualizacaoDto> _bdGraficoEqualizacaoGreen;
@@ -28,19 +28,7 @@ namespace HistogramasEqualizados
         public Form1()
         {
             InitializeComponent();
-
-            _imagemEqualizada = false;
-            _graficoHistograma = false;
-            _graficoEqualizado = false;
-
-            _bdGraficoHistogramaRed = new List<HistogramaDto>();
-             _bdGraficoHistogramaGreen = new List<HistogramaDto>();
-             _bdGraficoHistogramaBlue = new List<HistogramaDto>();
-
-             _bdGraficoEqualizacaoRed = new List<EqualizacaoDto>();
-             _bdGraficoEqualizacaoGreen = new List<EqualizacaoDto>();
-            _bdGraficoEqualizacaoBlue = new List<EqualizacaoDto>();
-    }
+        }
 
         private void btCarregarImagem_Click(object sender, EventArgs e)
         {
@@ -55,6 +43,18 @@ namespace HistogramasEqualizados
                 _imagem = new Bitmap(File1.FileName);
                 pbImagemOriginal.Image = _imagem;
             }
+
+            _bdGraficoHistogramaRed = new List<HistogramaDto>();
+            _bdGraficoHistogramaGreen = new List<HistogramaDto>();
+            _bdGraficoHistogramaBlue = new List<HistogramaDto>();
+
+            _bdGraficoHistogramaRedNovo = new List<HistogramaDto>();
+            _bdGraficoHistogramaGreenNovo = new List<HistogramaDto>();
+            _bdGraficoHistogramaBlueNovo = new List<HistogramaDto>();
+
+            _bdGraficoEqualizacaoRed = new List<EqualizacaoDto>();
+            _bdGraficoEqualizacaoGreen = new List<EqualizacaoDto>();
+            _bdGraficoEqualizacaoBlue = new List<EqualizacaoDto>();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
@@ -81,21 +81,16 @@ namespace HistogramasEqualizados
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            if(_imagemEqualizada || _graficoHistograma || _graficoEqualizado)
-            {
-                if (!CarregarGraficoHistograma(e)) return;
-            }
-            //if (_imagemEqualizada && _graficoHistograma || _graficoEqualizado)
-            {
-                if (!CarregarGraficoEqualizacao(e)) return;
-            }
+            if (!CarregarGraficoHistograma(e)) return;
+            if (!CarregarImagemEqualizacao(e)) return;
+            CarregarNovaImagem();
         }
 
         private bool CarregarGraficoHistograma(System.ComponentModel.DoWorkEventArgs e)
         {
             if (_imagem == null) return false;
 
-            if (!Histograma(e)) return false;
+            if (!Histograma(e, _imagem, _bdGraficoHistogramaRed, _bdGraficoHistogramaGreen, _bdGraficoHistogramaBlue)) return false;
 
             graficoHistogramaR.BeginInvoke(
                new Action(() =>
@@ -139,110 +134,69 @@ namespace HistogramasEqualizados
             return true;
         }
 
-        private bool Histograma(System.ComponentModel.DoWorkEventArgs e)
+        private bool Histograma(System.ComponentModel.DoWorkEventArgs e, Bitmap imagem,  List<HistogramaDto> graficoHistogramaRed, List<HistogramaDto> graficoHistogramaGreen, List<HistogramaDto> graficoHistogramaBlue)
         {
-            _bdGraficoHistogramaRed.Clear();
-            _bdGraficoHistogramaGreen.Clear();
-            _bdGraficoHistogramaBlue.Clear();
+            graficoHistogramaRed.Clear();
+            graficoHistogramaGreen.Clear();
+            graficoHistogramaBlue.Clear();
 
             Color pixel;
-            for (int x = 0; x < _imagem.Width; x++)
+            for (int x = 0; x < imagem.Width; x++)
             {
-                for (int y = 0; y < _imagem.Height; y++)
+                for (int y = 0; y < imagem.Height; y++)
                 {
                     if (VerificarIsCancelamento(e)) return false;
-                    pixel = _imagem.GetPixel(x, y);
+                    pixel = imagem.GetPixel(x, y);
 
-                    var pixelRed = _bdGraficoHistogramaRed.FirstOrDefault(r => r.K == pixel.R);
+                    var pixelRed = graficoHistogramaRed.FirstOrDefault(r => r.K == pixel.R);
                     if (pixelRed == null)
                     {
                         pixelRed = new HistogramaDto
                         {
                             K = pixel.R,
-                            N = _imagem.Width * _imagem.Height
+                            N = imagem.Width * imagem.Height
                         };
-                        _bdGraficoHistogramaRed.Add(pixelRed);
+                        graficoHistogramaRed.Add(pixelRed);
                     }
                     pixelRed.NK++;
                     pixelRed.PR = (decimal)pixelRed.NK / (decimal)pixelRed.N;
 
-                    var pixelGreen = _bdGraficoHistogramaGreen.FirstOrDefault(r => r.K == pixel.G);
+                    var pixelGreen = graficoHistogramaGreen.FirstOrDefault(r => r.K == pixel.G);
                     if (pixelGreen == null)
                     {
                         pixelGreen = new HistogramaDto
                         {
                             K = pixel.G,
-                            N = _imagem.Width * _imagem.Height
+                            N = imagem.Width * imagem.Height
                         };
-                        _bdGraficoHistogramaGreen.Add(pixelGreen);
+                        graficoHistogramaGreen.Add(pixelGreen);
                     }
                     pixelGreen.NK++;
                     pixelGreen.PR = (decimal)pixelGreen.NK / (decimal)pixelGreen.N;
 
-                    var pixelBlue = _bdGraficoHistogramaBlue.FirstOrDefault(r => r.K == pixel.B);
+                    var pixelBlue = graficoHistogramaBlue.FirstOrDefault(r => r.K == pixel.B);
                     if (pixelBlue == null)
                     {
                         pixelBlue = new HistogramaDto
                         {
                             K = pixel.B,
-                            N = _imagem.Width * _imagem.Height
+                            N = imagem.Width * imagem.Height
                         };
-                        _bdGraficoHistogramaBlue.Add(pixelBlue);
+                        graficoHistogramaBlue.Add(pixelBlue);
                     }
                     pixelBlue.NK++;
                     pixelBlue.PR = (decimal)pixelBlue.NK / (decimal)pixelBlue.N;
                 }
             }
-            _bdGraficoHistogramaRed = _bdGraficoHistogramaRed.OrderBy(o => o.K).ToList();
-            _bdGraficoHistogramaGreen = _bdGraficoHistogramaGreen.OrderBy(o => o.K).ToList();
-            _bdGraficoHistogramaBlue = _bdGraficoHistogramaBlue.OrderBy(o => o.K).ToList();
 
             return true;
         }
 
-        private bool CarregarGraficoEqualizacao(System.ComponentModel.DoWorkEventArgs e)
+        private bool CarregarImagemEqualizacao(System.ComponentModel.DoWorkEventArgs e)
         {
             if (!Equalizar(e)) return false;
-            if (!NovaImagemEqualizadaImagem(e)) return false;
-
-            graficoEqualizadoR.BeginInvoke(
-               new Action(() =>
-               {
-                   graficoEqualizadoR.Series.Add(new Series
-                   {
-                       Color = Color.Red,
-                       XValueMember = "K",
-                       YValueMembers = "NK"
-                   });
-                   graficoEqualizadoR.DataSource = _bdGraficoEqualizacaoRed;
-               }
-            ));
-
-            graficoEqualizadoG.BeginInvoke(
-               new Action(() =>
-               {
-                   graficoEqualizadoG.Series.Add(new Series
-                   {
-                       Color = Color.Green,
-                       XValueMember = "K",
-                       YValueMembers = "NK"
-                   });
-                   graficoEqualizadoG.DataSource = _bdGraficoEqualizacaoGreen;
-               }
-            ));
-
-            graficoEqualizadoB.BeginInvoke(
-               new Action(() =>
-               {
-                   graficoEqualizadoB.Series.Add(new Series
-                   {
-                       Color = Color.Blue,
-                       XValueMember = "K",
-                       YValueMembers = "NK"
-                   });
-                   graficoEqualizadoB.DataSource = _bdGraficoEqualizacaoBlue;
-               }
-            ));
+            if (!NovaImagemEqualizada(e)) return false;
+            if (!CarregarGraficoEqualizado(e)) return false;
 
             return true;
         }
@@ -254,7 +208,7 @@ namespace HistogramasEqualizados
             _bdGraficoEqualizacaoBlue.Clear();
             
             decimal soma = 0;
-            foreach (var histoRed in _bdGraficoHistogramaRed)
+            foreach (var histoRed in _bdGraficoHistogramaRed.OrderBy(o=> o.K))
             {
                 if (VerificarIsCancelamento(e)) return false;
 
@@ -269,7 +223,7 @@ namespace HistogramasEqualizados
             }
 
             soma = 0;
-            foreach (var histoGreen in _bdGraficoHistogramaGreen)
+            foreach (var histoGreen in _bdGraficoHistogramaGreen.OrderBy(o => o.K))
             {
                 if (VerificarIsCancelamento(e)) return false;
 
@@ -284,7 +238,7 @@ namespace HistogramasEqualizados
             }
 
             soma = 0;
-            foreach (var histoBlue in _bdGraficoHistogramaBlue)
+            foreach (var histoBlue in _bdGraficoHistogramaBlue.OrderBy(o => o.K))
             {
                 if (VerificarIsCancelamento(e)) return false;
 
@@ -301,7 +255,7 @@ namespace HistogramasEqualizados
             return true;
         }
 
-        private bool NovaImagemEqualizadaImagem(System.ComponentModel.DoWorkEventArgs e)
+        private bool NovaImagemEqualizada(System.ComponentModel.DoWorkEventArgs e)
         {
             int R, G, B;
             Color pixel;
@@ -335,6 +289,54 @@ namespace HistogramasEqualizados
             return true;
         }
 
+        private bool CarregarGraficoEqualizado(System.ComponentModel.DoWorkEventArgs e)
+        {
+            if (_imagemNova == null) return false;
+
+            if (!Histograma(e, _imagemNova, _bdGraficoHistogramaRedNovo, _bdGraficoHistogramaGreenNovo, _bdGraficoHistogramaBlueNovo)) return false;
+
+            graficoEqualizadoR.BeginInvoke(
+               new Action(() =>
+               {
+                   graficoEqualizadoR.Series.Add(new Series
+                   {
+                       Color = Color.Red,
+                       XValueMember = "K",
+                       YValueMembers = "NK"
+                   });
+                   graficoEqualizadoR.DataSource = _bdGraficoHistogramaRedNovo;
+               }
+            ));
+
+            graficoEqualizadoG.BeginInvoke(
+               new Action(() =>
+               {
+                   graficoEqualizadoG.Series.Add(new Series
+                   {
+                       Color = Color.Green,
+                       XValueMember = "K",
+                       YValueMembers = "NK"
+                   });
+                   graficoEqualizadoG.DataSource = _bdGraficoHistogramaGreenNovo;
+               }
+            ));
+
+            graficoEqualizadoB.BeginInvoke(
+               new Action(() =>
+               {
+                   graficoEqualizadoB.Series.Add(new Series
+                   {
+                       Color = Color.Blue,
+                       XValueMember = "K",
+                       YValueMembers = "NK"
+                   });
+                   graficoEqualizadoB.DataSource = _bdGraficoHistogramaBlueNovo;
+               }
+            ));
+
+            return true;
+        }
+
         private void CarregarNovaImagem()
         {
             if (_imagemNova == null) return;
@@ -353,21 +355,23 @@ namespace HistogramasEqualizados
             }
             return false;
         }
-
-        private void btGraficoHistograma_Click(object sender, EventArgs e)
-        {
-            _graficoHistograma = true;
-
-            backgroundWorker.RunWorkerAsync();
-
-            ProgressBar.Style = ProgressBarStyle.Marquee;
-            ProgressBar.MarqueeAnimationSpeed = 5;
-            
-        }
-
+        
         private void btEqualizarImagem_Click(object sender, EventArgs e)
         {
-            CarregarNovaImagem();
+            if (_imagem == null) return;
+
+            try
+            {
+                backgroundWorker.RunWorkerAsync();
+
+                ProgressBar.Style = ProgressBarStyle.Marquee;
+                ProgressBar.MarqueeAnimationSpeed = 5;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(@"Não foi Possível Equalizar Imagem!");
+            }
+            
         }
 
         private void btCancelar_Click(object sender, EventArgs e)
@@ -377,6 +381,7 @@ namespace HistogramasEqualizados
                 backgroundWorker.CancelAsync();
             }
         }
+        
     }
     
 }

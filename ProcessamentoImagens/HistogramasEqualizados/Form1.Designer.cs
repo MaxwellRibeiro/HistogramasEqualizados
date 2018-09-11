@@ -51,11 +51,11 @@
             this.graficoHistogramaR = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.graficoHistogramaG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.graficoHistogramaB = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btGraficoHistograma = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btGraficoEqualizado = new MaterialSkin.Controls.MaterialRaisedButton();
             this.graficoEqualizadoR = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.graficoEqualizadoG = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.graficoEqualizadoB = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagemOriginal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagemEqualizada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graficoHistogramaR)).BeginInit();
@@ -181,31 +181,6 @@
             this.graficoHistogramaB.TabIndex = 17;
             this.graficoHistogramaB.Text = "chart2";
             // 
-            // btGraficoHistograma
-            // 
-            this.btGraficoHistograma.Depth = 0;
-            this.btGraficoHistograma.Location = new System.Drawing.Point(273, 106);
-            this.btGraficoHistograma.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btGraficoHistograma.Name = "btGraficoHistograma";
-            this.btGraficoHistograma.Primary = true;
-            this.btGraficoHistograma.Size = new System.Drawing.Size(440, 33);
-            this.btGraficoHistograma.TabIndex = 18;
-            this.btGraficoHistograma.Text = "Gráfico Histograma";
-            this.btGraficoHistograma.UseVisualStyleBackColor = true;
-            this.btGraficoHistograma.Click += new System.EventHandler(this.btGraficoHistograma_Click);
-            // 
-            // btGraficoEqualizado
-            // 
-            this.btGraficoEqualizado.Depth = 0;
-            this.btGraficoEqualizado.Location = new System.Drawing.Point(719, 106);
-            this.btGraficoEqualizado.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btGraficoEqualizado.Name = "btGraficoEqualizado";
-            this.btGraficoEqualizado.Primary = true;
-            this.btGraficoEqualizado.Size = new System.Drawing.Size(440, 33);
-            this.btGraficoEqualizado.TabIndex = 19;
-            this.btGraficoEqualizado.Text = "Gráfico Equalizado";
-            this.btGraficoEqualizado.UseVisualStyleBackColor = true;
-            // 
             // graficoEqualizadoR
             // 
             chartArea4.Name = "ChartArea1";
@@ -245,16 +220,42 @@
             this.graficoEqualizadoB.TabIndex = 22;
             this.graficoEqualizadoB.Text = "chart2";
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(273, 106);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(440, 33);
+            this.materialLabel1.TabIndex = 23;
+            this.materialLabel1.Text = "Gráfico Histograma";
+            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.Location = new System.Drawing.Point(719, 106);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(440, 33);
+            this.materialLabel2.TabIndex = 24;
+            this.materialLabel2.Text = "Gráfico Equalizado";
+            this.materialLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 708);
+            this.Controls.Add(this.materialLabel2);
+            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.graficoEqualizadoB);
             this.Controls.Add(this.graficoEqualizadoG);
             this.Controls.Add(this.graficoEqualizadoR);
-            this.Controls.Add(this.btGraficoEqualizado);
-            this.Controls.Add(this.btGraficoHistograma);
             this.Controls.Add(this.graficoHistogramaB);
             this.Controls.Add(this.graficoHistogramaG);
             this.Controls.Add(this.graficoHistogramaR);
@@ -292,11 +293,11 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoHistogramaR;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoHistogramaG;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoHistogramaB;
-        private MaterialSkin.Controls.MaterialRaisedButton btGraficoHistograma;
-        private MaterialSkin.Controls.MaterialRaisedButton btGraficoEqualizado;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoEqualizadoR;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoEqualizadoG;
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoEqualizadoB;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
 
